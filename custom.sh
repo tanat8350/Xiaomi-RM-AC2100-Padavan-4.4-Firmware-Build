@@ -1,16 +1,16 @@
 #!/bin/bash
 
-user_name="root"                                    # 用户名
-user_password="root"                                # 登录密码
-lan_ip="192.168.31"                                 # LAN 地址 别写后面的 .1
-wlan_2g_ssid="int_2.4G"                             # 2G 无线名称
-wlan_5g_ssid="int_5G"                               # 5G 无线名称
-wlan_guest_2g_ssid="int_pub_2.4G"                   # 2G 访客无线名称
-wlan_guest_5g_ssid="int_pub_5G"                     # 5G 访客无线名称
-wlan_2g_psk="qwerasdf"                              # 2G WIFI密码最少8位 空白为不设置
-wlan_5g_psk="qwerasdf"                              # 5G WIFI密码最少8位 空白为不设置
-version_time=$(date +%Y%m%d)                        # 更新时版本号时间: 20210101
-default_file="./user/shared/defaults.h"             # 默认配置文件
+user_name="root"                        # 用户名
+user_password="root"                    # 登录密码
+lan_ip="192.168.31"                     # LAN 地址 别写后面的 .1
+wlan_2g_ssid="int_2.4G"                 # 2G 无线名称
+wlan_5g_ssid="int_5G"                   # 5G 无线名称
+wlan_guest_2g_ssid="int_pub_2.4G"       # 2G 访客无线名称
+wlan_guest_5g_ssid="int_pub_5G"         # 5G 访客无线名称
+wlan_2g_psk=""                          # 2G WIFI密码最少8位 空白为不设置
+wlan_5g_psk=""                          # 5G WIFI密码最少8位 空白为不设置
+version_time=$(date +%Y%m%d)            # 更新时版本号时间: 20210101
+default_file="./user/shared/defaults.h" # 默认配置文件
 
 echo "修改用户名"
 sed -i 's/SYS_USER_ROOT		"admin"/SYS_USER_ROOT		"'$user_name'"/g' $default_file
@@ -42,11 +42,9 @@ sed -i 's/DEF_WLAN_5G_PSK		"1234567890"/DEF_WLAN_5G_PSK		"'$wlan_5g_psk'"/g' $de
 echo "更新版本号时间"
 sed -i "s/FIRMWARE_BUILDS_REV=.*/FIRMWARE_BUILDS_REV=$version_time/g" ./versions.inc
 
-
-
 #####################################################################
 
-default_path="./user/shared"                    # 默认配置路径
+default_path="./user/shared" # 默认配置路径
 
 #echo "设置为PPPOE模式并写入账号和密码"
 #sed -i 's/{ "wan_proto", "dhcp" }/{ "wan_proto", "pppoe" }/g' $default_path/defaults.c
@@ -61,3 +59,4 @@ default_path="./user/shared"                    # 默认配置路径
 
 #echo "打开5G无线桥接"
 #sed -i 's/{ "wl_mode_x", "0" }/{ "wl_mode_x", "4" }/g' $default_path/defaults.c
+
